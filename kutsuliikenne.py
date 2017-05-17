@@ -6,7 +6,6 @@ import tornado.ioloop
 import tornado.options
 import tornado.web
 from tornado.web import url
-#import sqlite3
 
 import psycopg2
 import psycopg2.extensions
@@ -28,9 +27,6 @@ import redis
 from tornado.options import define, options
 
 import translations
-
-sys.path.append('/home/peltonent/livibetasecurity')
-
 import livibetasecurity
 
 
@@ -94,12 +90,7 @@ class Application(tornado.web.Application):
             cookie_secret="|_oveO?@Re,982Zh2|08wX$g%We8*&C0I1D_bWKd6|8Sh*Nr.2=10:A?941pZ;D"
         )
         tornado.web.Application.__init__(self, routes, **settings)
-        tornado.autoreload.watch('/home/peltonent/livibetasecurity/livibetasecurity/__init__.py')
-        #self.dbconn = sqlite3.connect('../db/cgi_20151130.db')
-        #self.dbconn.row_factory = dict_factory
 
-
-        #self.dbconn.create_function("hypot", 2, math.hypot)
         assert options.dbhost
         assert options.dbport
         assert options.dbname
@@ -111,8 +102,6 @@ class Application(tornado.web.Application):
         self.redis = redis.StrictRedis(host='localhost', port=6379, db=0,decode_responses=True)
 
         self.fieldtrans = translations.fieldtrans
-
-        #print self.security.generatePasswordHash('nakki')
 
 
 def main():
