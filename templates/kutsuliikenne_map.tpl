@@ -36,14 +36,14 @@ html, body {
 var servicesLayer,serviceMarkerLayer;
 $(function() {
       var map = L.map('map').setView([62,25], 8);
-      L.tileLayer('http://api.digitransit.fi/map/v1/{id}/{z}/{x}/{y}.png', {
+      L.tileLayer('https://api.digitransit.fi/map/v1/{id}/{z}/{x}/{y}.png', {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
           '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ',
         id: 'hsl-map'}).addTo(map);
     //map.fitBounds([[59.764881, 20.548571],[70.092308, 31.586201]]);
 
-    $.getJSON('http://beta.liikennevirasto.fi/joukkoliikenne/kutsujoukkoliikenne/vie/geojson',function (servicedata) {
+    $.getJSON('/joukkoliikenne/kutsujoukkoliikenne/vie/geojson',function (servicedata) {
          
         servicesLayer = new L.geoJson(servicedata,{
             onEachFeature: function (feat,lyr) {
